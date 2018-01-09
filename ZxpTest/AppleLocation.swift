@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-open class AppleLocation: NSObject, CLLocationManagerDelegate {
+public class AppleLocation: NSObject, CLLocationManagerDelegate {
     
     public static let sharedInstance = AppleLocation()
     
@@ -54,7 +54,7 @@ open class AppleLocation: NSObject, CLLocationManagerDelegate {
     }
     
     //委托传回定位，获取最后一个
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //获取最新的坐标
         let currLocation:CLLocation = locations.last!
         print("=====================")
@@ -74,7 +74,7 @@ open class AppleLocation: NSObject, CLLocationManagerDelegate {
         
     }
     
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+    public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("定位出错拉！！\(error)")
     }
    
