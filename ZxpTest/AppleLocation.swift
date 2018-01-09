@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-class AppleLocation: NSObject, CLLocationManagerDelegate {
+open class AppleLocation: NSObject, CLLocationManagerDelegate {
     
     public static let sharedInstance = AppleLocation()
     
