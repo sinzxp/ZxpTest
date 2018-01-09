@@ -15,10 +15,10 @@ public class AppleLocation: NSObject, CLLocationManagerDelegate {
     
     var locManager: CLLocationManager = CLLocationManager()
     
-    var latitude: Double?
-    var longitude: Double?
+    public var latitude: Double?
+    public var longitude: Double?
     
-    public typealias appleLocationDate = (_ text: String) -> ()
+    typealias appleLocationDate = (_ text: String) -> ()
     var block: appleLocationDate?
     
 //    override init() {
@@ -35,7 +35,7 @@ public class AppleLocation: NSObject, CLLocationManagerDelegate {
      kCLLocationAccuracyKilometer ：精确度1000m以内
      kCLLocationAccuracyThreeKilometers ：精确度3000m以内
      */
-    func initLocationManager() {
+    public func initLocationManager() {
         locManager.delegate = self
         locManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
         locManager.distanceFilter = 100 ///设备移动后获得位置信息的最小距离
@@ -49,7 +49,7 @@ public class AppleLocation: NSObject, CLLocationManagerDelegate {
     }
     
     ///停止定位
-    func stopLocation() {
+    public func stopLocation() {
         locManager.stopUpdatingLocation()
     }
     
@@ -78,7 +78,7 @@ public class AppleLocation: NSObject, CLLocationManagerDelegate {
         print("定位出错拉！！\(error)")
     }
    
-    func checkCurrentCity(_ location: CLLocation) {
+    public func checkCurrentCity(_ location: CLLocation) {
         let coder = CLGeocoder()
         coder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
             if let placemark = placemarks?.last {
@@ -102,14 +102,14 @@ public class AppleLocation: NSObject, CLLocationManagerDelegate {
     }
     
     ///两点距离
-    func distanceLocation(currentLocation:CLLocation,targetLocation:CLLocation) -> String {
+    public func distanceLocation(currentLocation:CLLocation,targetLocation:CLLocation) -> String {
         let distance = currentLocation.distance(from: targetLocation) as Double
         let dis = NSNumber(value: distance as Double).intValue
         return distanceString(dis)
     }
     
     ///距离自己
-    func userDistanceLocation(_ location:CLLocation) -> String {
+    public func userDistanceLocation(_ location:CLLocation) -> String {
         if latitude != nil && longitude != nil {
             let currentLocation = CLLocation(latitude: latitude!, longitude: longitude!)
             let distance = currentLocation.distance(from: location) as Double
@@ -133,7 +133,7 @@ public class AppleLocation: NSObject, CLLocationManagerDelegate {
 
     fileprivate let units = ["m", "km"]
     
-    func distanceString(_ distance: Int) -> String {
+    public func distanceString(_ distance: Int) -> String {
         var distance = distance
         var unitIndex = 0
         if distance > 1000 {
